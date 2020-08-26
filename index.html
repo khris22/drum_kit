@@ -63,12 +63,27 @@
     //   listening to key press and getting the keycode from it
         window.addEventListener('keydown', function(e) {
             const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+
             if(!audio) return; //stop the function when pressed key is not there
-            // console.log(audio)
+                // console.log(audio)
             audio.currentTime = 0; // will restart the key to play over and over again without pause
             audio.play() 
-            }
-        )
+                // add playing class to show transition
+            key.classList.add('playing')
+                // remove the playing class
+        });
+
+        // removeTransition() function
+        function removeTransition(e) {
+            if(e.propertyName !== 'transform') return;
+            // this = key
+            this.classList.remove('playing')
+        };
+
+        const keys = document.querySelectorAll('.key');
+        // listening to each key 
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition()));
   </script>
     
 </body>

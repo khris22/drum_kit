@@ -8,6 +8,7 @@
 </head>
 <body>
 
+    <!-- every key on the keyboard has a key code that is associated with the key; keycode.info -->
   <div class="keys">
     <div data-key="65" class="key">
       <kbd>A</kbd>
@@ -47,6 +48,7 @@
     </div>
   </div>
 
+  <!-- data attribute: (data-key) -->
   <audio data-key="65" src="sounds/clap.wav"></audio>
   <audio data-key="83" src="sounds/hihat.wav"></audio>
   <audio data-key="68" src="sounds/kick.wav"></audio>
@@ -58,7 +60,15 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
   <script>
-      
+    //   listening to key press and getting the keycode from it
+        window.addEventListener('keydown', function(e) {
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            if(!audio) return; //stop the function when pressed key is not there
+            // console.log(audio)
+            audio.currentTime = 0; // will restart the key to play over and over again without pause
+            audio.play() 
+            }
+        )
   </script>
     
 </body>

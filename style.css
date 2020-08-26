@@ -18,6 +18,8 @@ html {
     justify-content: center;
   }
   
+  /* each letter key for playing and produces 
+  the animation when letter is pressed */
   .key {
     border: .4rem solid black;
     border-radius: .5rem;
